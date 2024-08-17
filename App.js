@@ -13,13 +13,21 @@ function addTodo() {
   const todoText = todoInput.value.trim();
   if (todoText.length > 0) {
     allTodos.push(todoText);
-    createTodoItem(todoText);
+    updateTodoList();
     todoInput.value = "";
   }
+}
+
+function updateTodoList() {
+  todoListUL.innerHTML = "";
+  allTodos.forEach((todo, todoIndex) => {
+    todoItem = createTodoItem(todo, todoIndex);
+    todoListUL.append(todoItem);
+  });
 }
 
 function createTodoItem(todo) {
   const todoLI = document.createElement("li");
   todoLI.innerText = todo;
-  todoListUL.append(todoLI);
+  return todoLI;
 }
